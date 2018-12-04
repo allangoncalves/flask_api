@@ -1,8 +1,13 @@
 from flask import request, jsonify
 from app.models import Call
 from app import app, db
+from flask import Flask
+from config import Config
+from flask_sqlalchemy import SQLAlchemy
 
-
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
 
 @app.route('/call/', methods=['POST'])
 def save_call():
